@@ -1,0 +1,21 @@
+package org.jboss.qa.bpms.traffic;
+
+rule "Parking violation has been committed in 2019"
+  when
+    violation: Violation(type == "PARKING", date >= "1-Jan-2019")
+  then
+    Fine fine = new Fine();
+    fine.setPoints(1);
+    fine.setAmount(200);
+    insert(fine);
+end
+
+rule "Parking violation has been committed before 2019"
+  when
+    violation: Violation(type == "PARKING", date < "1-Jan-2019")
+  then
+    Fine fine = new Fine();
+    fine.setPoints(1);
+    fine.setAmount(100);
+    insert(fine);
+end

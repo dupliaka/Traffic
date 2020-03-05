@@ -1,0 +1,22 @@
+package org.jboss.qa.bpms.traffic;
+
+rule "Status 1: young driver"
+  when
+    driver: Driver(age <= 18)
+  then
+    driver.setStatus("young");
+end
+
+rule "Status 2: young adult driver"
+  when
+    driver: Driver(age > 18 && < 25)
+  then
+    driver.setStatus("young adult");
+end
+
+rule "Status 3: adult driver"
+  when
+    driver: Driver(age >= 25)
+  then
+    driver.setStatus("adult");
+end

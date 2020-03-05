@@ -1,0 +1,12 @@
+package org.jboss.qa.bpms.traffic;
+
+
+rule "Driver phone propogates from GIVEN to EXPECT"
+        dialect "mvel"
+        when
+        $driver: Driver( $dp : phone);
+        $department: Department($dt : title);
+        then
+        $driver.setPhone($dp);
+        $department.setTitle($dt);
+        end

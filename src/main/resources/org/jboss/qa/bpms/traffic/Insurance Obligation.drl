@@ -1,0 +1,15 @@
+
+package org.jboss.qa.bpms.traffic;
+
+import java.lang.Number;
+
+rule "Every driver obligated to have an insurance"
+	dialect "mvel"
+	when
+		Driver( insurance != null )
+		$d : Driver( )
+	then
+	$d.setInsured(true);
+
+
+end

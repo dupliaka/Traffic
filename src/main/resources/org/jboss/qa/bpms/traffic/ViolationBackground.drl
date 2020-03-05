@@ -1,0 +1,13 @@
+package org.jboss.qa.bpms.traffic;
+
+
+import java.lang.Number;
+
+rule "Driver CZ jurisdiction"
+	dialect "mvel"
+	when
+		department: Department( country == "CZ" );
+		$d : Driver()
+	then
+	    $d.setCountry("CZ");
+end

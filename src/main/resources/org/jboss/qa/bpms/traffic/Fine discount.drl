@@ -1,0 +1,17 @@
+package org.jboss.qa.bpms.traffic;
+
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.temporal.ChronoUnit;
+import org.jboss.qa.bpms.traffic.Fine;
+import org.jboss.qa.bpms.traffic.Violation;
+
+
+rule "If driver pays fast it recievs a discount"
+	dialect "mvel"
+	when
+		Violation( $vd : date )
+		$fo : Fine( $pd : paidDate ,  paidDate!=null, ChronoUnit.DAYS.between($vd,$pd)<15)
+	then
+	   $fo.setPaidInGracePeriod( true );
+end
